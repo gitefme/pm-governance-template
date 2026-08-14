@@ -35,6 +35,7 @@ Plan approval changes a complete `pending` plan to `confirmed`. It may remain ou
 - Current plan status follows stage: none at `Discussion`, `draft` at `Plan drafting`, `pending` at `Plan review`, `confirmed` at `Ready`, `Implementation`, or `Verification`, and `implemented` at `Done`. `Blocked` may retain no plan or a `draft`, `pending`, or `confirmed` plan.
 - Each task has at most one non-`superseded` detailed plan. A superseded plan remains indexed history and cannot be the task's current plan reference.
 - Detailed plans contain exactly one Task ID and one Status metadata field.
+- Every `pending` or `confirmed` detailed plan contains a non-empty `Design Basis`. Draft plans may add it while design is still being shaped; implemented and superseded history is not rewritten retroactively.
 - Keep at most one task in `Now`.
 - `Implementation` and `Verification` exist only in `Now`; `Now` uses only those stages.
 - Read `plans/000_EXECUTIVE_PLAN.md` first, then only plans relevant to the current task.
@@ -46,3 +47,5 @@ Plan approval changes a complete `pending` plan to `confirmed`. It may remain ou
 ## Plan Contents
 
 Include the task ID, status, user input basis when supplied, Codex additions, summary, scope and exclusions, implementation changes, interfaces/data/configuration effects, verification, assumptions, risks, and rollback or migration considerations when relevant.
+
+When design applies, use the `Design Basis` to identify applicable durable sources, task-specific confirmed design decisions, open decisions, expected UI states, and accessibility and responsive implications. When it does not apply, state that the task has no product-design effect. Do not list irrelevant documents just to fill the section.

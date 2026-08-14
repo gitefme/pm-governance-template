@@ -1,10 +1,11 @@
 # PM Governance Template
 
-Reusable project-management and governance system for a new project. It contains no project scope, task history, completed plans, product decisions, or selected implementation stack.
+Reusable project-management and governance system for a new project. It contains no project-specific scope or product decisions, no task history or completed plans, and no selected implementation stack.
 
 ## Start Here
 
 - Before creating formal work, record the new project's confirmed product direction and open decisions in `DESIGN_BRIEF.md`.
+- Record confirmed cross-product interaction, UI-state, responsive, and accessibility conventions in `PRODUCT_DESIGN.md` as they are established.
 - Record confirmed system boundaries and major technical decisions in `ARCHITECTURE.md` as they are made.
 - Read `BACKLOG.md` for unfinished formal work.
 - Read `plans/000_EXECUTIVE_PLAN.md` before opening detailed plans.
@@ -14,6 +15,7 @@ Reusable project-management and governance system for a new project. It contains
 ## Repository Map
 
 - `ARCHITECTURE.md`: system boundaries and technical decisions.
+- `PRODUCT_DESIGN.md`: cross-product UX and interaction conventions.
 - `BACKLOG_DONE.md`: completed formal tasks.
 - `IDEA_INBOX.md` / `IDEA_ARCHIVE.md`: informal idea intake and history.
 - `PROJECT_LOG.md`: decisions, outcomes, checks, and residual risks.

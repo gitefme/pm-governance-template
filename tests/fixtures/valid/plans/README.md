@@ -12,4 +12,4 @@ Allowed statuses:
 
 Formulation, approval, and activation are distinct.
 
-Lightweight tasks record Plan Type: Lightweight and Resume When if parked. Detailed tasks record Plan Type: Detailed and Blocked By if blocked.
+Lightweight tasks record Plan Type: Lightweight and Resume When if parked. Detailed tasks record Plan Type: Detailed and Blocked By if blocked. Pending and confirmed detailed plans include a non-empty Design Basis.

@@ -32,6 +32,7 @@ Canonical documentation commands:
 
 - Cover every allowed task-stage and current-plan-status relationship.
 - Reject wrong backlog sections, duplicate fields or plan metadata, stale counts/focus/horizons, multiple current detailed plans, and current references to implemented or superseded plans.
+- Require the product-design source and a non-empty `Design Basis` in `pending` and `confirmed` detailed plans.
 - Verify blocked work both before planning and with retained draft, pending, or confirmed plans.
 
 ## Completion Rule

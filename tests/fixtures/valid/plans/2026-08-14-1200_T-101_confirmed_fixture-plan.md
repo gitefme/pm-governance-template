@@ -6,3 +6,7 @@
 ## Summary
 
 Exercise the checker.
+
+## Design Basis
+
+This documentation-only fixture has no product-design effect.

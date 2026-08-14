@@ -5,6 +5,7 @@ Human-facing collaboration contract for task intake, planning, approval, impleme
 ## Sources of Truth
 
 - `DESIGN_BRIEF.md`: product outcomes, principles, and user workflows.
+- `PRODUCT_DESIGN.md`: cross-product information architecture, interaction patterns, UI states, responsive behavior, and accessibility conventions.
 - `ARCHITECTURE.md`: system boundaries, data ownership, and major technical decisions.
 - `BACKLOG.md`: unfinished formal tasks, priority, status, stage, and planning horizons.
 - `BACKLOG_DONE.md`: completed formal tasks.
@@ -123,6 +124,10 @@ The current plan status follows the task stage:
 
 A task has at most one non-`superseded` detailed plan. Superseded plans remain indexed history but cannot be the task's current plan reference. When a blocker clears, restore the stage deterministically: no plan -> `Discussion`; `draft` -> `Plan drafting`; `pending` -> `Plan review`; `confirmed` -> `Ready`.
 
+## Complex-Plan Design Basis
+
+Every `pending` or `confirmed` detailed plan includes a non-empty `Design Basis`. It identifies only the applicable durable sources, task-specific confirmed design decisions, open decisions requiring user confirmation, relevant loading/empty/error/disabled/destructive/success states, and accessibility and responsive implications. Product outcomes and workflows belong in `DESIGN_BRIEF.md`; reusable cross-product UX rules belong in `PRODUCT_DESIGN.md`; technical constraints belong in `ARCHITECTURE.md`; and feature-only decisions remain in the plan unless later confirmed work promotes them to a durable source.
+
 ## Close Criteria
 
 Close a task only when expected and error behavior are complete, required checks pass, affected documentation is current, any plan is renamed `implemented`, and `PROJECT_LOG.md` records the outcome and residual risk. Move the full task record from `BACKLOG.md` to `BACKLOG_DONE.md` in the same change.
@@ -132,6 +137,7 @@ Close a task only when expected and error behavior are complete, required checks
 | Change | Required update |
 | --- | --- |
 | Product outcome, principle, or user workflow | `DESIGN_BRIEF.md` |
+| Cross-product information architecture, interaction pattern, UI state, responsive behavior, or accessibility convention | `PRODUCT_DESIGN.md` |
 | System boundary, data ownership, provider, persistence, or deployment | `ARCHITECTURE.md` |
 | Task, priority, status, stage, blocker, or horizon | `BACKLOG.md` |
 | Completed formal task | move to `BACKLOG_DONE.md` |
@@ -142,7 +148,7 @@ Close a task only when expected and error behavior are complete, required checks
 | Test strategy, command, or coverage expectation | `TESTING_PLAN.md` |
 | Collaboration or execution rule | `WORKFLOW.md` and `AGENTS.md` |
 
-`ARCHITECTURE.md` is always included for architecture changes. If the project later adopts a dedicated workspace-design document or an equivalent source of truth, add it to the Sources of Truth and this matrix in the same confirmed change; do not create one speculatively.
+`ARCHITECTURE.md` is always included for architecture changes. If the project later adopts a dedicated workspace-design document or another narrower source of truth, add it to the Sources of Truth, `PRODUCT_DESIGN.md` ownership map, and this matrix in the same confirmed change; do not create one speculatively.
 
 ## Standard Requests
 

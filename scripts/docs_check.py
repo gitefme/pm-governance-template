@@ -34,6 +34,7 @@ REQUIRED_DOCS = {
     "IDEA_ARCHIVE.md",
     "IDEA_INBOX.md",
     "PROJECT_LOG.md",
+    "PRODUCT_DESIGN.md",
     "README.md",
     "TESTING_PLAN.md",
     "WORKFLOW.md",
@@ -54,7 +55,7 @@ DOCUMENT_CONTRACT = {
         "`implemented`",
         "`superseded`",
     },
-    "WORKFLOW.md": {"Resume When", "Blocked By", "Implementation", "Verification"},
+    "WORKFLOW.md": {"Resume When", "Blocked By", "Implementation", "Verification", "Design Basis"},
     "BACKLOG.md": {
         "- Plan Type:",
         "- Plan Status:",
@@ -66,7 +67,14 @@ DOCUMENT_CONTRACT = {
         "Planning Horizons",
     },
     "BACKLOG_DONE.md": {"- Plan Type:", "- Plan Status:", "- Plan Reference:"},
-    "plans/README.md": {"Resume When", "Blocked By", "Plan Type: Lightweight", "Plan Type: Detailed"},
+    "PRODUCT_DESIGN.md": {"DESIGN_BRIEF.md", "ARCHITECTURE.md", "Design Basis"},
+    "plans/README.md": {
+        "Resume When",
+        "Blocked By",
+        "Plan Type: Lightweight",
+        "Plan Type: Detailed",
+        "Design Basis",
+    },
 }
 
 
@@ -211,6 +219,12 @@ def parse_plan(path: Path, issues: list[str], root: Path) -> Plan | None:
         add(issues, root, path, f"embedded task ID {task_id} does not match filename task ID {filename.group('task')}")
     if status != filename.group("status"):
         add(issues, root, path, f"embedded status {status} does not match filename status {filename.group('status')}")
+    if status in {"pending", "confirmed"}:
+        design_basis = h2_body(text, "Design Basis")
+        if design_basis is None:
+            add(issues, root, path, f"{status} detailed plan requires a ## Design Basis section")
+        elif not design_basis:
+            add(issues, root, path, f"{status} detailed plan requires a non-empty ## Design Basis section")
     return Plan(path, task_id, status)
 
 
@@ -408,14 +422,33 @@ def validate(root: Path) -> list[str]:
             expected = fragment.lower() if relative == "AGENTS.md" else fragment
             if expected not in comparison:
                 add(issues, root, path, f"governance contract is missing required wording or field: {fragment}")
+    workflow_sources = h2_body(workflow, "Sources of Truth")
+    workflow_matrix = h2_body(workflow, "Documentation Update Matrix")
+    if workflow_sources is None:
+        add(issues, root, root / "WORKFLOW.md", "missing Sources of Truth section")
+        workflow_sources = ""
+    if workflow_matrix is None:
+        add(issues, root, root / "WORKFLOW.md", "missing Documentation Update Matrix section")
+        workflow_matrix = ""
     for source in REQUIRED_DOCS:
         if source in {"WORKFLOW.md", "plans/README.md"}:
             continue
-        if source.endswith(".md") and f"`{source}`" not in workflow and source not in {"IDEA_ARCHIVE.md", "IDEA_INBOX.md"}:
+        if source.endswith(".md") and f"`{source}`" not in workflow_sources and source not in {"IDEA_ARCHIVE.md", "IDEA_INBOX.md"}:
             add(issues, root, root / "WORKFLOW.md", f"Sources of Truth does not reference {source}")
-    for required_source in ("ARCHITECTURE.md", "BACKLOG.md", "PROJECT_LOG.md", "TESTING_PLAN.md", "WORKFLOW.md"):
+    if "`PRODUCT_DESIGN.md`" not in workflow_matrix:
+        add(issues, root, root / "WORKFLOW.md", "Documentation Update Matrix does not reference PRODUCT_DESIGN.md")
+    for required_source in (
+        "ARCHITECTURE.md",
+        "BACKLOG.md",
+        "PRODUCT_DESIGN.md",
+        "PROJECT_LOG.md",
+        "TESTING_PLAN.md",
+        "WORKFLOW.md",
+    ):
         if f"`{required_source}`" not in agents:
             add(issues, root, root / "AGENTS.md", f"Project Sources of Truth does not reference {required_source}")
+    if "`PRODUCT_DESIGN.md`" not in readme:
+        add(issues, root, root / "README.md", "Repository Map does not reference PRODUCT_DESIGN.md")
     if (root / "WORKSPACE_DESIGN.md").exists():
         for path, text in ((root / "WORKFLOW.md", workflow), (root / "AGENTS.md", agents)):
             if "`WORKSPACE_DESIGN.md`" not in text:

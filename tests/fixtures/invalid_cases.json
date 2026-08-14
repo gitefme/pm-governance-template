@@ -224,5 +224,52 @@
     "append": {
       "plans/000_EXECUTIVE_PLAN.md": "\n- `Now`: T-101.\n"
     }
+  },
+  {
+    "name": "missing product design source",
+    "expected": "PRODUCT_DESIGN.md: required governance document is missing",
+    "delete": ["PRODUCT_DESIGN.md"]
+  },
+  {
+    "name": "confirmed plan missing Design Basis",
+    "expected": "confirmed detailed plan requires a ## Design Basis section",
+    "replace": [
+      {"path": "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md", "old": "\n## Design Basis\n\nThis documentation-only fixture has no product-design effect.\n", "new": ""}
+    ]
+  },
+  {
+    "name": "confirmed plan empty Design Basis",
+    "expected": "confirmed detailed plan requires a non-empty ## Design Basis section",
+    "replace": [
+      {"path": "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md", "old": "This documentation-only fixture has no product-design effect.\n", "new": ""}
+    ]
+  },
+  {
+    "name": "agents missing product design source",
+    "expected": "Project Sources of Truth does not reference PRODUCT_DESIGN.md",
+    "replace": [
+      {"path": "AGENTS.md", "old": ", `PRODUCT_DESIGN.md`", "new": ""}
+    ]
+  },
+  {
+    "name": "workflow missing product design source",
+    "expected": "Sources of Truth does not reference PRODUCT_DESIGN.md",
+    "replace": [
+      {"path": "WORKFLOW.md", "old": ", `PRODUCT_DESIGN.md`", "new": ""}
+    ]
+  },
+  {
+    "name": "readme missing product design source",
+    "expected": "Repository Map does not reference PRODUCT_DESIGN.md",
+    "replace": [
+      {"path": "README.md", "old": "See `PRODUCT_DESIGN.md` for cross-product UX rules.\n\n", "new": ""}
+    ]
+  },
+  {
+    "name": "workflow matrix missing product design source",
+    "expected": "Documentation Update Matrix does not reference PRODUCT_DESIGN.md",
+    "replace": [
+      {"path": "WORKFLOW.md", "old": "| Cross-product UX rule | `PRODUCT_DESIGN.md` |\n", "new": ""}
+    ]
   }
 ]

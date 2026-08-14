@@ -5,6 +5,7 @@ These instructions apply to the whole repository.
 ## Project Sources of Truth
 
 - `DESIGN_BRIEF.md`: confirmed product outcomes, principles, and user workflows.
+- `PRODUCT_DESIGN.md`: confirmed cross-product information architecture, interaction patterns, UI states, responsive behavior, and accessibility conventions.
 - `ARCHITECTURE.md`: confirmed system boundaries, data ownership, and major technical decisions.
 - `BACKLOG.md`: unfinished formal tasks and the single active task.
 - `BACKLOG_DONE.md`: completed formal tasks with stable IDs.
@@ -28,6 +29,7 @@ Read only the documents relevant to the current request. Do not bulk-load histor
 - Use only `draft`, `pending`, `confirmed`, `implemented`, and `superseded` as plan statuses.
 - Keep the current plan aligned with the stage: none at `Discussion`, `draft` at `Plan drafting`, `pending` at `Plan review`, `confirmed` at `Ready` or active work, and `implemented` only at `Done`. Blocked work may retain no plan or a `draft`, `pending`, or `confirmed` plan.
 - A task may have at most one non-superseded detailed plan. Reject duplicate task fields or plan metadata rather than choosing one value.
+- Every `pending` or `confirmed` detailed plan includes a non-empty `Design Basis`. When design applies, cover applicable durable sources, task-specific confirmed decisions, open decisions, expected UI states, and accessibility and responsive implications; otherwise state that no product-design effect exists.
 - Keep formulation confirmation, plan approval, and activation separate. An explicit request to implement or resume confirmed work is activation and moves it to `Now + Implementation`.
 - Pause for meaningful changes to product scope, architecture, persistent data, security/privacy, external dependencies/providers, material cost, or destructive behavior.
 

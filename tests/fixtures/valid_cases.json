@@ -51,6 +51,7 @@
       {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Next\n"},
       {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "No task is active. Keep at most one task in `Now`.\n"},
       {"path": "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md", "old": "- Status: `confirmed`\n", "new": "- Status: `draft`\n"},
+      {"path": "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md", "old": "\n## Design Basis\n\nThis documentation-only fixture has no product-design effect.\n", "new": ""},
       {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- `Now`: T-101.\n", "new": "- `Now`: none.\n"},
       {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_fixture-plan.md](2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "- T-101 — `draft` — [2026-08-14-1200_T-101_draft_fixture-plan.md](2026-08-14-1200_T-101_draft_fixture-plan.md)\n"}
     ],
@@ -130,7 +131,10 @@
     ]
   },
   {
-    "name": "implemented plan at Done",
-    "complete_task": true
+    "name": "implemented plan at Done without retroactive Design Basis",
+    "complete_task": true,
+    "replace": [
+      {"path": "plans/2026-08-14-1200_T-101_implemented_fixture-plan.md", "old": "\n## Design Basis\n\nThis documentation-only fixture has no product-design effect.\n", "new": ""}
+    ]
   }
 ]

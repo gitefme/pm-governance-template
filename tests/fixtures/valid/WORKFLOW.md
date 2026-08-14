@@ -2,7 +2,7 @@
 
 ## Sources of Truth
 
-Use `AGENTS.md`, `ARCHITECTURE.md`, `BACKLOG.md`, `BACKLOG_DONE.md`, `DESIGN_BRIEF.md`, `PROJECT_LOG.md`, `README.md`, `TESTING_PLAN.md`, and `plans/000_EXECUTIVE_PLAN.md`.
+Use `AGENTS.md`, `ARCHITECTURE.md`, `BACKLOG.md`, `BACKLOG_DONE.md`, `DESIGN_BRIEF.md`, `PRODUCT_DESIGN.md`, `PROJECT_LOG.md`, `README.md`, `TESTING_PLAN.md`, and `plans/000_EXECUTIVE_PLAN.md`.
 
 ### 1. Formulation Confirmation
 
@@ -18,6 +18,8 @@ Activation starts confirmed work.
 
 Intentional parking requires Resume When. Blocking requires Blocked By. Implementation and Verification exist only in Now.
 
+Every pending or confirmed detailed plan includes a non-empty Design Basis.
+
 ## Plan States
 
 - `draft`: incomplete.
@@ -25,3 +27,9 @@ Intentional parking requires Resume When. Blocking requires Blocked By. Implemen
 - `confirmed`: approved.
 - `implemented`: completed.
 - `superseded`: replaced.
+
+## Documentation Update Matrix
+
+| Change | Required update |
+| --- | --- |
+| Cross-product UX rule | `PRODUCT_DESIGN.md` |
