@@ -1,0 +1,228 @@
+[
+  {
+    "name": "duplicate task ID",
+    "expected": "duplicate task ID T-101",
+    "append": {
+      "BACKLOG.md": "\n- [ ] T-101 Duplicate fixture task\n  - Status: Later\n  - Stage: Discussion\n  - Priority: P2\n  - Area: Docs\n  - Source: test fixture\n  - Goal: Expose a duplicate ID.\n  - Acceptance: The checker rejects it.\n  - Scope Exclusions: None.\n  - Dependencies: None.\n  - Verification: Run the checker.\n"
+    }
+  },
+  {
+    "name": "multiple Now tasks",
+    "expected": "at most one task may be in Now",
+    "append": {
+      "BACKLOG.md": "\n- [ ] T-102 Second active fixture task\n  - Status: Now\n  - Stage: Verification\n  - Priority: P2\n  - Area: Docs\n  - Source: test fixture\n  - Plan Type: Lightweight\n  - Plan Status: confirmed\n  - Plan Reference: embedded in this task\n  - Goal: Expose multiple active tasks.\n  - Acceptance: The checker rejects it.\n  - Scope Exclusions: None.\n  - Dependencies: None.\n  - Verification: Run the checker.\n"
+    }
+  },
+  {
+    "name": "active stage outside Now",
+    "expected": "at Implementation must have Status: Now",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n", "new": "  - Status: Later\n"}
+    ]
+  },
+  {
+    "name": "missing readiness field",
+    "expected": "empty or missing Goal field",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Goal: Exercise the valid documentation workflow.\n", "new": "  - Goal:\n"}
+    ]
+  },
+  {
+    "name": "parked task missing Resume When",
+    "expected": "intentionally parked T-101 requires Resume When",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Parked\n  - Stage: Ready\n"}
+    ]
+  },
+  {
+    "name": "blocked task missing Blocked By",
+    "expected": "at Blocked requires Blocked By",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Parked\n  - Stage: Blocked\n"}
+    ]
+  },
+  {
+    "name": "invalid plan status",
+    "expected": "invalid Plan Status: parked",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Plan Status: confirmed\n", "new": "  - Plan Status: parked\n"}
+    ]
+  },
+  {
+    "name": "unconfirmed lightweight task in Now",
+    "expected": "at Implementation requires Plan Status: confirmed",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Plan Type: Detailed\n", "new": "  - Plan Type: Lightweight\n"},
+      {"path": "BACKLOG.md", "old": "  - Plan Status: confirmed\n", "new": "  - Plan Status: pending\n"},
+      {"path": "BACKLOG.md", "old": "  - Plan Reference: [fixture plan](plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "  - Plan Reference: embedded in this task\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_fixture-plan.md](2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "No detailed plans exist.\n"}
+    ],
+    "delete": ["plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md"]
+  },
+  {
+    "name": "missing plan file",
+    "expected": "plan reference does not exist",
+    "delete": ["plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md"]
+  },
+  {
+    "name": "mismatched embedded plan task ID",
+    "expected": "embedded task ID T-102 does not match filename task ID T-101",
+    "replace": [
+      {"path": "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md", "old": "- Task ID: T-101\n", "new": "- Task ID: T-102\n"}
+    ]
+  },
+  {
+    "name": "broken plan reference",
+    "expected": "plan reference does not exist",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md", "new": "plans/missing-plan.md"}
+    ]
+  },
+  {
+    "name": "executive index drift",
+    "expected": "detailed-plan index drift",
+    "replace": [
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_fixture-plan.md](2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "No detailed plans exist.\n"}
+    ]
+  },
+  {
+    "name": "backlog template drift",
+    "expected": "governance contract is missing required wording or field: - Blocked By:",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "- Blocked By:\n", "new": "- Blocking Cause:\n"}
+    ]
+  },
+  {
+    "name": "task under wrong backlog section",
+    "expected": "with Status: Now must appear under ## Now",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Later\n"}
+    ]
+  },
+  {
+    "name": "duplicate contradictory Status fields",
+    "expected": "repeats Status; first defined",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n", "new": "  - Status: Now\n  - Status: Later\n"}
+    ]
+  },
+  {
+    "name": "stale completed task count",
+    "expected": "Completed task count must be 0",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "- Completed task count: 0\n", "new": "- Completed task count: 99\n"}
+    ]
+  },
+  {
+    "name": "stale Current Focus",
+    "expected": "Current Focus must be:",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "T-999 is the single active task in `Now + Implementation`.\n"}
+    ]
+  },
+  {
+    "name": "duplicate planning horizon entry",
+    "expected": "Planning Horizons must list T-101 exactly once",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "- Near term: T-101 Valid fixture task.\n", "new": "- Near term: T-101 Valid fixture task and T-101 again.\n"}
+    ]
+  },
+  {
+    "name": "unknown planning horizon entry",
+    "expected": "Planning Horizons references unknown or completed task T-999",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "- Near term: T-101 Valid fixture task.\n", "new": "- Near term: T-101 Valid fixture task.\n- Later: T-999 Unknown task.\n"}
+    ]
+  },
+  {
+    "name": "missing planning horizon entry",
+    "expected": "Planning Horizons must list T-101 exactly once",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "- Near term: T-101 Valid fixture task.\n", "new": "No task has been assigned to a horizon.\n"}
+    ]
+  },
+  {
+    "name": "superseded current plan at Plan drafting",
+    "expected": "at Plan drafting requires Plan Status: draft",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Next\n  - Stage: Plan drafting\n"},
+      {"path": "BACKLOG.md", "old": "  - Plan Status: confirmed\n", "new": "  - Plan Status: superseded\n"},
+      {"path": "BACKLOG.md", "old": "2026-08-14-1200_T-101_confirmed_fixture-plan.md", "new": "2026-08-14-1200_T-101_superseded_fixture-plan.md"},
+      {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Next\n"},
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "No task is active. Keep at most one task in `Now`.\n"},
+      {"path": "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md", "old": "- Status: `confirmed`\n", "new": "- Status: `superseded`\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- `Now`: T-101.\n", "new": "- `Now`: none.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_fixture-plan.md](2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "- T-101 — `superseded` — [2026-08-14-1200_T-101_superseded_fixture-plan.md](2026-08-14-1200_T-101_superseded_fixture-plan.md)\n"}
+    ],
+    "rename": {"plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md": "plans/2026-08-14-1200_T-101_superseded_fixture-plan.md"}
+  },
+  {
+    "name": "implemented current plan on blocked unfinished task",
+    "expected": "may reference only a draft, pending, or confirmed plan",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Parked\n  - Stage: Blocked\n  - Blocked By: External dependency.\n"},
+      {"path": "BACKLOG.md", "old": "  - Plan Status: confirmed\n", "new": "  - Plan Status: implemented\n"},
+      {"path": "BACKLOG.md", "old": "2026-08-14-1200_T-101_confirmed_fixture-plan.md", "new": "2026-08-14-1200_T-101_implemented_fixture-plan.md"},
+      {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Parked\n"},
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "No task is active. Keep at most one task in `Now`.\n"},
+      {"path": "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md", "old": "- Status: `confirmed`\n", "new": "- Status: `implemented`\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- `Now`: T-101.\n", "new": "- `Now`: none.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- Blocked plans: none.\n", "new": "- Blocked plans: T-101.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_fixture-plan.md](2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "- T-101 — `implemented` — [2026-08-14-1200_T-101_implemented_fixture-plan.md](2026-08-14-1200_T-101_implemented_fixture-plan.md)\n"}
+    ],
+    "rename": {"plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md": "plans/2026-08-14-1200_T-101_implemented_fixture-plan.md"}
+  },
+  {
+    "name": "multiple current detailed plans for one task",
+    "expected": "T-101 has multiple non-superseded detailed plans",
+    "copy": {
+      "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md": "plans/2026-08-14-1200_T-101_confirmed_second-current-plan.md"
+    },
+    "append": {
+      "plans/000_EXECUTIVE_PLAN.md": "\n- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_second-current-plan.md](2026-08-14-1200_T-101_confirmed_second-current-plan.md)\n"
+    }
+  },
+  {
+    "name": "duplicate detailed plan Status metadata",
+    "expected": "duplicate Status metadata",
+    "append": {
+      "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md": "\n- Status: `parked`\n"
+    }
+  },
+  {
+    "name": "duplicate detailed plan Task ID metadata",
+    "expected": "duplicate Task ID metadata",
+    "append": {
+      "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md": "\n- Task ID: T-101\n"
+    }
+  },
+  {
+    "name": "completed task missing year heading",
+    "expected": "must appear under Completed Tasks and a YYYY heading",
+    "complete_task": true,
+    "replace": [
+      {"path": "BACKLOG_DONE.md", "old": "### 2026\n\n", "new": ""}
+    ]
+  },
+  {
+    "name": "duplicate completed task count",
+    "expected": "must contain exactly one Completed task count",
+    "append": {
+      "BACKLOG.md": "\n- Completed task count: 0\n"
+    }
+  },
+  {
+    "name": "duplicate Current Focus section",
+    "expected": "must contain exactly one ## Current Focus section",
+    "append": {
+      "BACKLOG.md": "\n## Current Focus\n\nT-101 is the single active task in `Now + Implementation`.\n"
+    }
+  },
+  {
+    "name": "duplicate executive Now summary",
+    "expected": "must contain exactly one `Now` summary",
+    "append": {
+      "plans/000_EXECUTIVE_PLAN.md": "\n- `Now`: T-101.\n"
+    }
+  }
+]

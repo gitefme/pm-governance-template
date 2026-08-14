@@ -1,0 +1,136 @@
+[
+  {
+    "name": "confirmed lightweight task in Now",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Plan Type: Detailed\n", "new": "  - Plan Type: Lightweight\n"},
+      {"path": "BACKLOG.md", "old": "  - Plan Reference: [fixture plan](plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "  - Plan Reference: embedded in this task\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_fixture-plan.md](2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "No detailed plans exist.\n"}
+    ],
+    "delete": ["plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md"]
+  },
+  {
+    "name": "intentionally parked confirmed task",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Parked\n  - Stage: Ready\n  - Resume When: The intentional pause ends.\n"},
+      {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Parked\n"},
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "No task is active. Keep at most one task in `Now`.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- `Now`: T-101.\n", "new": "- `Now`: none.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- Confirmed plans stored for later: none.\n", "new": "- Confirmed plans stored for later: T-101.\n"}
+    ]
+  },
+  {
+    "name": "blocked task before planning",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Parked\n  - Stage: Blocked\n  - Blocked By: A prerequisite decision.\n"},
+      {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Parked\n"},
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "No task is active. Keep at most one task in `Now`.\n"},
+      {"path": "BACKLOG.md", "old": "  - Plan Type: Detailed\n  - Plan Status: confirmed\n  - Plan Reference: [fixture plan](plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": ""},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- `Now`: T-101.\n", "new": "- `Now`: none.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_fixture-plan.md](2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "No detailed plans exist.\n"}
+    ],
+    "delete": ["plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md"]
+  },
+  {
+    "name": "discussion without a plan",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Next\n  - Stage: Discussion\n"},
+      {"path": "BACKLOG.md", "old": "  - Plan Type: Detailed\n  - Plan Status: confirmed\n  - Plan Reference: [fixture plan](plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": ""},
+      {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Next\n"},
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "No task is active. Keep at most one task in `Now`.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- `Now`: T-101.\n", "new": "- `Now`: none.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_fixture-plan.md](2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "No detailed plans exist.\n"}
+    ],
+    "delete": ["plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md"]
+  },
+  {
+    "name": "draft plan at Plan drafting",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Next\n  - Stage: Plan drafting\n"},
+      {"path": "BACKLOG.md", "old": "  - Plan Status: confirmed\n", "new": "  - Plan Status: draft\n"},
+      {"path": "BACKLOG.md", "old": "2026-08-14-1200_T-101_confirmed_fixture-plan.md", "new": "2026-08-14-1200_T-101_draft_fixture-plan.md"},
+      {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Next\n"},
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "No task is active. Keep at most one task in `Now`.\n"},
+      {"path": "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md", "old": "- Status: `confirmed`\n", "new": "- Status: `draft`\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- `Now`: T-101.\n", "new": "- `Now`: none.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_fixture-plan.md](2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "- T-101 — `draft` — [2026-08-14-1200_T-101_draft_fixture-plan.md](2026-08-14-1200_T-101_draft_fixture-plan.md)\n"}
+    ],
+    "rename": {"plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md": "plans/2026-08-14-1200_T-101_draft_fixture-plan.md"}
+  },
+  {
+    "name": "pending plan at Plan review",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Next\n  - Stage: Plan review\n"},
+      {"path": "BACKLOG.md", "old": "  - Plan Status: confirmed\n", "new": "  - Plan Status: pending\n"},
+      {"path": "BACKLOG.md", "old": "2026-08-14-1200_T-101_confirmed_fixture-plan.md", "new": "2026-08-14-1200_T-101_pending_fixture-plan.md"},
+      {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Next\n"},
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "No task is active. Keep at most one task in `Now`.\n"},
+      {"path": "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md", "old": "- Status: `confirmed`\n", "new": "- Status: `pending`\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- `Now`: T-101.\n", "new": "- `Now`: none.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- Plans awaiting review: none.\n", "new": "- Plans awaiting review: T-101.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_fixture-plan.md](2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "- T-101 — `pending` — [2026-08-14-1200_T-101_pending_fixture-plan.md](2026-08-14-1200_T-101_pending_fixture-plan.md)\n"}
+    ],
+    "rename": {"plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md": "plans/2026-08-14-1200_T-101_pending_fixture-plan.md"}
+  },
+  {
+    "name": "confirmed plan at Ready",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Next\n  - Stage: Ready\n"},
+      {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Next\n"},
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "No task is active. Keep at most one task in `Now`.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- `Now`: T-101.\n", "new": "- `Now`: none.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- Confirmed plans stored for later: none.\n", "new": "- Confirmed plans stored for later: T-101.\n"}
+    ]
+  },
+  {
+    "name": "confirmed plan at Verification",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Stage: Implementation\n", "new": "  - Stage: Verification\n"},
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "T-101 is the single active task in `Now + Verification`.\n"}
+    ]
+  },
+  {
+    "name": "blocked task retaining draft plan",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Parked\n  - Stage: Blocked\n  - Blocked By: External dependency.\n"},
+      {"path": "BACKLOG.md", "old": "  - Plan Status: confirmed\n", "new": "  - Plan Status: draft\n"},
+      {"path": "BACKLOG.md", "old": "2026-08-14-1200_T-101_confirmed_fixture-plan.md", "new": "2026-08-14-1200_T-101_draft_fixture-plan.md"},
+      {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Parked\n"},
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "No task is active. Keep at most one task in `Now`.\n"},
+      {"path": "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md", "old": "- Status: `confirmed`\n", "new": "- Status: `draft`\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- `Now`: T-101.\n", "new": "- `Now`: none.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- Blocked plans: none.\n", "new": "- Blocked plans: T-101.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_fixture-plan.md](2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "- T-101 — `draft` — [2026-08-14-1200_T-101_draft_fixture-plan.md](2026-08-14-1200_T-101_draft_fixture-plan.md)\n"}
+    ],
+    "rename": {"plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md": "plans/2026-08-14-1200_T-101_draft_fixture-plan.md"}
+  },
+  {
+    "name": "blocked task retaining pending plan",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Parked\n  - Stage: Blocked\n  - Blocked By: External dependency.\n"},
+      {"path": "BACKLOG.md", "old": "  - Plan Status: confirmed\n", "new": "  - Plan Status: pending\n"},
+      {"path": "BACKLOG.md", "old": "2026-08-14-1200_T-101_confirmed_fixture-plan.md", "new": "2026-08-14-1200_T-101_pending_fixture-plan.md"},
+      {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Parked\n"},
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "No task is active. Keep at most one task in `Now`.\n"},
+      {"path": "plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md", "old": "- Status: `confirmed`\n", "new": "- Status: `pending`\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- `Now`: T-101.\n", "new": "- `Now`: none.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- Plans awaiting review: none.\n", "new": "- Plans awaiting review: T-101.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- Blocked plans: none.\n", "new": "- Blocked plans: T-101.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- T-101 — `confirmed` — [2026-08-14-1200_T-101_confirmed_fixture-plan.md](2026-08-14-1200_T-101_confirmed_fixture-plan.md)\n", "new": "- T-101 — `pending` — [2026-08-14-1200_T-101_pending_fixture-plan.md](2026-08-14-1200_T-101_pending_fixture-plan.md)\n"}
+    ],
+    "rename": {"plans/2026-08-14-1200_T-101_confirmed_fixture-plan.md": "plans/2026-08-14-1200_T-101_pending_fixture-plan.md"}
+  },
+  {
+    "name": "blocked task retaining confirmed plan",
+    "replace": [
+      {"path": "BACKLOG.md", "old": "  - Status: Now\n  - Stage: Implementation\n", "new": "  - Status: Parked\n  - Stage: Blocked\n  - Blocked By: External dependency.\n"},
+      {"path": "BACKLOG.md", "old": "## Now\n", "new": "## Parked\n"},
+      {"path": "BACKLOG.md", "old": "T-101 is the single active task in `Now + Implementation`.\n", "new": "No task is active. Keep at most one task in `Now`.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- `Now`: T-101.\n", "new": "- `Now`: none.\n"},
+      {"path": "plans/000_EXECUTIVE_PLAN.md", "old": "- Blocked plans: none.\n", "new": "- Blocked plans: T-101.\n"}
+    ]
+  },
+  {
+    "name": "implemented plan at Done",
+    "complete_task": true
+  }
+]
