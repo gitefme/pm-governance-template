@@ -21,6 +21,7 @@ Reusable project-management and governance system for a new project. Governance 
 - `PROJECT_LOG.md`: decisions, outcomes, checks, and residual risks.
 - `TESTING_PLAN.md`: verification strategy.
 - `plans/`: detailed plans tied to formal tasks.
+- `skills/`: portable backlog-summary and HTML-review skill packages; see [setup and direct use](docs/BACKLOG_SKILLS.md).
 
 Document application source, tests, assets, generated output, and canonical development commands only after the new project's product shape and toolchain are confirmed.
 
@@ -30,11 +31,13 @@ No application development, build, lint, or test commands are configured.
 
 - Documentation check: `python3 -B scripts/docs_check.py`
 - Documentation-checker tests: `python3 -B -m unittest discover -s tests -p 'test_docs_check.py'`
+- All governance-tool tests, including bundled skills: `python3 -B -m unittest discover -s tests -p 'test_*.py'`
 
 These commands use only the Python 3 standard library and do not select an application stack. Add application commands only after their tools and configuration exist in this repository.
 
 ## Portable Guides and Optional Integrations
 
+- [Portable backlog skills](docs/BACKLOG_SKILLS.md): install both skills into a project's discovery directory with `python3 -B scripts/install_skills.py`, or use the bundled instructions and HTML generator directly. No global installation is required.
 - [Migration guide](docs/PM_V2_MIGRATION_GUIDE.md): update an existing project while preserving its history, approvals, and acceptance.
 - [Optional governance artifacts](docs/GOVERNANCE_EXTENSIONS.md): roadmap, decision register, traceability, execution batches, and review handoff examples. No optional live artifacts are adopted initially.
 - [Verification and operations](docs/OPERATIONS_GUIDE.md): source/target evidence, prepared synthetic examples, safe diagnostics, and optional hook integration.

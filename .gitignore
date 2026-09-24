@@ -1,0 +1,7 @@
+# Generated discovery copies; skills/ owns the distributable source.
+/.agents/skills/bkl-sh/
+/.agents/skills/backlog-html-review/
+# Dated personal snapshots from the bundled exporter.
+/outputs/backlog-review-*.html
+__pycache__/
+*.pyc

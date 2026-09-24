@@ -1,0 +1,4 @@
+interface:
+  display_name: "Backlog Short View"
+  short_description: "Compact formal backlog, completed-work, and idea views"
+  default_prompt: "Use $bkl-sh to give a concise read-only view of this project's formal backlog or requested completed work and ideas."
