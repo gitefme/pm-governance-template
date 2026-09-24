@@ -1,5 +1,7 @@
 # Development Workflow
 
+Governance version: 2
+
 ## Sources of Truth
 
 Use `AGENTS.md`, `ARCHITECTURE.md`, `BACKLOG.md`, `BACKLOG_DONE.md`, `DESIGN_BRIEF.md`, `PRODUCT_DESIGN.md`, `PROJECT_LOG.md`, `README.md`, `TESTING_PLAN.md`, and `plans/000_EXECUTIVE_PLAN.md`.
@@ -33,3 +35,7 @@ Every pending or confirmed detailed plan includes a non-empty Design Basis.
 | Change | Required update |
 | --- | --- |
 | Cross-product UX rule | `PRODUCT_DESIGN.md` |
+
+## Optional Artifacts
+
+No optional artifacts adopted.

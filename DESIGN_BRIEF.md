@@ -22,3 +22,7 @@ This template contains no confirmed product scope. Replace this placeholder with
 - Which delivery environment and operational constraints apply?
 
 Record confirmed answers here. Convert implementation work into formal tasks in `BACKLOG.md`; keep raw possibilities in `IDEA_INBOX.md`.
+
+## Authority and Evidence
+
+Confirmed target rules describe intended behavior, not proof that it exists. Keep implementation status, dated verification, and outstanding acceptance in task records and linked evidence. Under explicit write-first authorization, isolate proposed sections with Formulation Status: proposed, Storage Authorization, and visible open decisions. They do not override confirmed rules. Remove the proposed marker only after confirmation; record the decision and affected revision. A plan's approval does not silently approve unrelated changes to this document.

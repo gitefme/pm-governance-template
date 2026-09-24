@@ -7,8 +7,8 @@ These instructions apply to the whole repository.
 - `DESIGN_BRIEF.md`: confirmed product outcomes, principles, and user workflows.
 - `PRODUCT_DESIGN.md`: confirmed cross-product information architecture, interaction patterns, UI states, responsive behavior, and accessibility conventions.
 - `ARCHITECTURE.md`: confirmed system boundaries, data ownership, and major technical decisions.
-- `BACKLOG.md`: unfinished formal tasks and the single active task.
-- `BACKLOG_DONE.md`: completed formal tasks with stable IDs.
+- `BACKLOG.md`: unfinished formal tasks, open epics, checkpoints, and WIP guidance.
+- `BACKLOG_DONE.md`: completed formal tasks and epics with stable IDs and separate counts.
 - `IDEA_INBOX.md` and `IDEA_ARCHIVE.md`: non-formal ideas and their outcomes.
 - `plans/`: detailed task plans; start with `plans/000_EXECUTIVE_PLAN.md`.
 - `PROJECT_LOG.md`: concise decisions, implementation outcomes, verification, and residual risks.
@@ -20,28 +20,29 @@ Read only the documents relevant to the current request. Do not bulk-load histor
 
 ## Planning and Execution
 
-- Keep stable `T-###` task IDs and at most one task in `Now`.
-- Use `Status` for where work sits and `Stage` for what it needs next; use the values in `WORKFLOW.md`.
-- Place every unfinished task under the backlog section matching its `Status`; keep completed count, current focus, and planning horizons as checked projections of task records.
-- `Implementation` and `Verification` exist only in `Now`; `Now` uses only those stages.
-- Intentionally parked work uses `Status: Parked`, retains an eligible non-active stage, and records `Resume When`. Work unable to proceed uses `Parked + Blocked` and records `Blocked By`.
-- Simple work requires a confirmed lightweight plan embedded in its backlog record before entering `Now`. Complex work requires a confirmed linked detailed plan.
-- Use only `draft`, `pending`, `confirmed`, `implemented`, and `superseded` as plan statuses.
-- Keep the current plan aligned with the stage: none at `Discussion`, `draft` at `Plan drafting`, `pending` at `Plan review`, `confirmed` at `Ready` or active work, and `implemented` only at `Done`. Blocked work may retain no plan or a `draft`, `pending`, or `confirmed` plan.
-- A task may have at most one non-superseded detailed plan. Reject duplicate task fields or plan metadata rather than choosing one value.
-- Every `pending` or `confirmed` detailed plan includes a non-empty `Design Basis`. When design applies, cover applicable durable sources, task-specific confirmed decisions, open decisions, expected UI states, and accessibility and responsive implications; otherwise state that no product-design effect exists.
-- Keep formulation confirmation, plan approval, and activation separate. An explicit request to implement or resume confirmed work is activation and moves it to `Now + Implementation`.
-- Pause for meaningful changes to product scope, architecture, persistent data, security/privacy, external dependencies/providers, material cost, or destructive behavior.
+- Follow governance version 2 in `WORKFLOW.md`; it owns the lifecycle and schemas.
+- Keep stable T-### tasks and E-### epics. Several started tasks may be in Now. The configurable WIP advisory limit starts at 3; excess warns without changing truthful task state.
+- Keep complete checkpoints on Now tasks: Checkpoint Updated, Completed Work, Remaining Work, Next Action, Open Issues, Executor. Update on meaningful progress and handoff; preserve them when parking/closing. Record Work Context when contributors overlap; agree ownership and integration order. Parallel tracking does not authorize automatic delegation.
+- Use Status and Stage as defined in WORKFLOW.md. Implementation and Verification exist only in Now. Interruptions retain their current stage. Resume verification as Verification. Intentional parking requires `Resume When`; blocking requires `Blocked By`. Preserve Resume Stage for parked, previously active confirmed work. Replanning follows the current plan state, never an automatic promotion to Ready.
+- Each unfinished task has Revision and Formulation Status with evidence or explicit write-first Storage Authorization. Confirmed plans require Plan Approval Evidence; Now requires Activation Evidence and an assigned executor. Keep formulation review, plan approval, and user acceptance distinct.
+- Simple work uses a confirmed embedded lightweight plan; complex work uses a confirmed detailed plan before Ready/Now. Use exactly `draft`, `pending`, `confirmed`, `implemented`, and `superseded`. Keep filename, metadata, task revision, plan reference, and index aligned. Reject duplicate fields and multiple current detailed plans.
+- Pending/confirmed detailed plans require a non-empty Design Basis. Material unresolved implementation choices keep the plan draft; a design-study plan may make those decisions its deliverable.
+- Classify task dependencies as Planning Prerequisites, Implementation Prerequisites, or Acceptance Prerequisites. Validate existing IDs, acyclic completion dependencies, and the applicable gate before starting or closing work.
+- Epic membership lives only in each task's optional Epic field. Epics have milestones and integrated completion criteria, never task stages or executable plans. Epic approval cannot approve or activate child plans. Close with linked evidence only after all members/prerequisites and milestones are complete.
+- Keep records, sections, current focus, counts, horizons, and executive summaries consistent. Register adopted optional artifacts and their owners/update triggers in WORKFLOW.md. Keep examples fenced and project registries empty when maintaining this distributable template.
+- Pause for meaningful unapproved changes to product scope, architecture, persistent data, security/privacy, dependencies/providers, cost, or destructive behavior. Resolve routine details within existing authorization.
 
 ### Durable Formulation Confirmation
 
-Before storing new or materially rewritten Codex-authored project wording, present the material formulation to the user and receive explicit confirmation. This includes task scope, acceptance criteria, plans, design rules, workflow rules, assessments, and recorded decisions. A request to save or capture authorizes a proposal for review, not a file write. Exact user wording, factual observations, verification results, and mechanical updates following a confirmed decision are exempt.
+Present material new or rewritten project wording for explicit formulation confirmation before storage. Ordinary save/capture requests permit a conversational proposal. Exact user wording, factual observations, verification results, and mechanical updates following confirmed decisions are exempt from a second review.
 
-Formulation confirmation authorizes storage only. Plan approval is separate and changes a complete plan from `pending` to `confirmed` without starting work. Activation is the later instruction that starts or resumes confirmed work in `Now`.
+Explicit write-first authorization permits the named proposal package to be stored as proposed; complete plans are pending and unresolved plans draft. Record the authorization. It does not imply final wording confirmation, plan approval, or activation. Preserve superseded revisions and historical acceptance; changed plans do not inherit approval. Do not ask again to perform an already authorized write.
+
+Keep formulation confirmation, plan approval, and activation separate. A user can explicitly satisfy multiple gates in one instruction; record each without extra permission rounds. Activation applies to identified confirmed work and preserves its actual remaining phase.
 
 ### User-Input Grounding
 
-Use supplied user inputs as the basis of task and plan proposals. Preserve the requested outcome, constraints, terminology, exclusions, and decisions. Label material assumptions or recommendations separately as `Codex Additions`; never invent `User Inputs`.
+Preserve supplied outcomes, constraints, terminology, exclusions, and decisions. Label material assumptions and recommendations as Codex Additions; never invent User Inputs. Distinguish confirmed targets, marked proposals, implemented behavior, verified results, and remaining acceptance.
 
 ## Project Structure and Coding Style
 
@@ -53,12 +54,16 @@ No application build, run, lint, or test commands exist yet. Do not copy command
 
 ## Testing Guidelines
 
-Use risk-based verification from `TESTING_PLAN.md`. Add tests with behavior changes, especially for data transformations, loading/error states, user-visible calculations, accessibility, and responsive behavior. Documentation-only changes require the documentation checker, its tests when checker behavior changes, complete readback, and a cross-document consistency check.
+Use risk-based verification from `TESTING_PLAN.md`. Add meaningful tests for behavior changes. Documentation-only changes require the documentation checker, checker tests when behavior changes, full readback, and semantic consistency review.
+
+Prepare applicable review handoffs: task/plan, source/target/date, exact actions and expected results, required/optional basis, preparation state, and separate user result. Use synthetic examples for unusual states; preserve earlier accepted evidence unless affected behavior changed. Real browser behavior requires real browser verification. Missing or stale evidence is not a pass. See `docs/OPERATIONS_GUIDE.md`; adopt runtime commands only once an application stack exists.
 
 ## Commit and Pull Request Guidelines
 
-This directory is not currently a Git repository. If version control is initialized, use focused commits with concise imperative subjects, such as `Add revenue summary card`. Pull requests should explain the outcome, validation performed, linked task or issue, residual risk, and include screenshots for visual changes.
+Inspect the actual Git root, branch, remote, and dirty state before repository operations. Preserve the destination history, remote identity, and unrelated changes when adopting this template. Use focused commits with concise imperative subjects. Pull requests should explain the outcome, validation performed, linked task or issue, residual risk, and include screenshots for visual changes.
 
 ## Security and Configuration
 
-Never commit credentials, `.env` files, private exports, customer data, or generated sensitive content. Provide a redacted example file when configuration is introduced. Keep secrets outside browser-visible state and logs unless an approved architecture explicitly requires otherwise.
+Never commit credentials, `.env` files, private exports, customer data, or generated sensitive content. Use permitted redacted public examples for setting names. Respect denied reads; never inspect secrets through another process to bypass a restriction. Avoid environment dumps, raw runtime configuration, request headers, and unrestricted logs. Use sanitized project-specific diagnostics once implemented.
+
+Use synthetic data and fake providers by default. Live checks need explicit targets, bounded cost, credentials handled internally where permitted, and cleanup. Keep test commands narrowly scoped and environments isolated. Do not import another project's permission profile, absolute-path rules, hooks, or runtime commands. Optional path-only secret checks and hook integration are documented in `docs/OPERATIONS_GUIDE.md`; they do not inspect secret contents or claim content scanning.

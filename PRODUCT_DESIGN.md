@@ -29,4 +29,8 @@ Every `pending` or `confirmed` detailed plan includes a non-empty `Design Basis`
 - expected loading, empty, error, disabled, destructive, and success states when relevant;
 - accessibility and responsive implications.
 
-Do not list irrelevant source documents merely to satisfy a template. A task plan does not authorize changing a durable product-design rule without the normal formulation-confirmation process.
+Material unanswered implementation decisions keep an implementation plan draft; a confirmed design study may make those decisions its deliverable. Do not list irrelevant source documents merely to satisfy a template. A task plan does not authorize changing a durable product-design rule without the normal formulation-confirmation process.
+
+## Authority and Evidence
+
+Confirmed target rules describe intended behavior, not proof that it exists. Keep implementation status, dated verification, and outstanding acceptance in task records and linked evidence. Under explicit write-first authorization, isolate proposed sections with Formulation Status: proposed, Storage Authorization, and visible open decisions. They do not override confirmed rules. Remove the proposed marker only after confirmation; record the decision and affected revision. A plan's approval does not silently approve unrelated changes to this document.

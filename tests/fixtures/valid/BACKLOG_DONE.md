@@ -9,3 +9,7 @@
 ## Completed Tasks
 
 No completed formal tasks.
+
+## Completed Epics
+
+No completed epics.
